@@ -1,0 +1,46 @@
+<!-- Property Binding -->
+<!-- <img [src]="products.image" /> -->
+<img bind-src="products.image" />
+
+<!-- String interpolation -->
+<p>Name: {{ products.name }}</p>
+<p>Price: {{ products.price }}</p>
+<p>Color: {{ products.color }}</p>
+<p>{{ "MRP: " + getDiscountPrice() }}</p>
+<p>
+  {{
+    this.products.inStock > 0
+      ? "Only " + this.products.inStock + " available"
+      : "Currently out of stock!"
+  }}
+</p>
+<button
+  type="button"
+  class="btn btn-success"
+  [disabled]="!(products.inStock > 0)"
+>
+  Buy Now
+</button>
+
+<!-- Attribute Binding -->
+<!-- <input type="text" [value]="products.name" [attr.aria-hidden]=""> -->
+
+<!-- <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input
+    type="email"
+    class="form-control"
+    id="exampleFormControlInput1"
+    placeholder="name@example.com"
+    (input)="onNameChange($event)"
+  />
+</div>
+<p>Email : {{ email }}</p> -->
+<br /><br><br>
+<button type="button" class="btn btn-secondary" (click)="changeQuantity(-1)">
+  -
+</button>
+<span>{{ quantity }}</span>
+<button type="button" class="btn btn-secondary" (click)="changeQuantity(1)">
+  +
+</button>
