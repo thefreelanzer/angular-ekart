@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { SearchComponent } from './search/search.component';
+import { CommonModule } from '@angular/common';
+import { ProductsListComponent } from './products-list/products-list.component';
 
 @Component({
-  selector: 'products-list',
+  selector: 'app-container',
   standalone: true,
-  imports: [SearchComponent],
-  templateUrl: './products-list.component.html',
-  styleUrl: './products-list.component.css',
+  imports: [SearchComponent, CommonModule, ProductsListComponent],
+  templateUrl: './container.component.html',
+  styleUrl: './container.component.css',
 })
-export class ProductsListComponent {
+export class ContainerComponent {
   email = 'name@example.com';
   products = {
     name: 'Iphone 15',
@@ -19,6 +21,7 @@ export class ProductsListComponent {
     image: '/assets/images/products/iphone.png',
   };
   quantity: number = 0;
+  nameArray: string[] = ['A', 'B', 'C', 'D'];
 
   getDiscountPrice() {
     return (

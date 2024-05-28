@@ -1,0 +1,11 @@
+<app-filter
+  [all]="all"
+  [inStock]="inStock"
+  [outOfStock]="outOfStock"
+></app-filter>
+<div class="ekart--products--container">
+  <app-product
+    *ngFor="let item of products; let i = index"
+    [product]="item"
+  ></app-product>
+</div>
