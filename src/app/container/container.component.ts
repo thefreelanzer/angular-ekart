@@ -29,7 +29,6 @@ export class ContainerComponent {
     );
   }
   onNameChange(event: any) {
-    // console.log(event.target.value);
     this.email = event.target.value;
   }
   changeQuantity(count: number) {
@@ -41,5 +40,10 @@ export class ContainerComponent {
     } else {
       this.quantity = newQuantity;
     }
+  }
+
+  searchText: string = '';
+  searchProducts(value: string) {
+    this.searchText = value;
   }
 }
