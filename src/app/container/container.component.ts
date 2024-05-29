@@ -2,11 +2,17 @@ import { Component } from '@angular/core';
 import { SearchComponent } from './search/search.component';
 import { CommonModule } from '@angular/common';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @Component({
   selector: 'app-container',
   standalone: true,
-  imports: [SearchComponent, CommonModule, ProductsListComponent],
+  imports: [
+    SearchComponent,
+    CommonModule,
+    ProductsListComponent,
+    ProductDetailsComponent,
+  ],
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
 })

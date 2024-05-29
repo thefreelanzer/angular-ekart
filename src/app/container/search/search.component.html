@@ -1,10 +1,26 @@
 <div class="ekart--search--product">
-  <input
+  <!-- Search on input -->
+  <!-- <input
     class="ekart-search-product-input"
     [(ngModel)]="searchText"
     (input)="change()"
     placeholder="Search..."
+  /> -->
+
+  <!-- Template rererence variable -->
+  <input
+    class="ekart-search-product-input"
+    placeholder="Search..."
+    #searchInput
   />
+  <!-- variable passing through the function -->
+  <!-- <button class="btn btn-search" (click)="updateSearchText(searchInput)">
+    Search
+  </button> -->
+
+  <button class="btn btn-search" (click)="updateSearchText()">Search</button>
+  <!-- Template rererence variable -->
+
   <!-- <button
     [ngClass]="{
       btn: true,

@@ -45,7 +45,13 @@
 
 <div class="ekart--product--container">
   <app-search (onSearchImput)="searchProducts($event)"></app-search>
-  <products-list [searchText]="searchText"></products-list>
+  <products-list
+    [searchText]="searchText"
+    #productListComponent
+  ></products-list>
+  <product-details
+    *ngIf="productListComponent.selectedProduct"
+  ></product-details>
   <!-- <div *ngFor="let item of nameArray">
     <p>Current item: {{ item }}</p>
   </div> -->
