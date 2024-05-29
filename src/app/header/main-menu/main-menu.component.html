@@ -1,3 +1,19 @@
 <div class="ekart-menu">
-  <a href="#" *ngFor="let menu of menuItems">{{ menu }}</a>
+  <!-- <a href="#" *ngFor="let menu of menuItems">{{ menu }}</a> -->
+  <a
+    *ngFor="let item of menuItems"
+    [routerLink]="item.route"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >{{ item.label }}</a
+  >
+
+  <!-- Navigation betwen routes programmatically -->
+  <!-- <a
+    *ngFor="let item of menuItems"
+    (click)="navigateTo(item.route)"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >{{ item.label }}</a
+  > -->
 </div>

@@ -71,6 +71,13 @@
   <div class="ekart-product-detail-addtoCart">
     <button
       class="btn-add-to-cart"
+      style="margin-right: 5px"
+      [routerLink]="'/products/product/' + product.id"
+    >
+      View Details
+    </button>
+    <button
+      class="btn-add-to-cart"
       *ngIf="product.is_in_inventory; else notifyMe"
     >
       ADD TO CART

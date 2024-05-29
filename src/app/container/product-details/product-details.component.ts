@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Product } from '../../Models/Product';
 import { ProductsListComponent } from '../products-list/products-list.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'product-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })

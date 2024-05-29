@@ -16,3 +16,9 @@ a{
     padding: 0 10px; 
     color: #28282B;
 }
+.active {
+    font-size: 18px;
+    font-weight: bold;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

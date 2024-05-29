@@ -1,0 +1,30 @@
+<div class="product-card" *ngIf="product">
+  <img src="{{ product.imageURL }}" alt="Product Image" class="product-image" />
+  <div class="product-details">
+    <h2 class="product-name">{{ product.name }}</h2>
+    <p
+      class="product-description"
+      matTooltip="{{ product.description }}"
+      matTooltipShowDelay="500"
+      matTooltipHideDelay="500"
+    >
+      {{ formatDescription(product.description) }}
+    </p>
+    <p class="product-price">{{ product.price }}</p>
+    <div class="navigation-buttons">
+      <button
+        mat-icon-button
+        [routerLink]="'/products/product/' + (product.id - 1)"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        [routerLink]="'/products/product/' + (product.id + 1)"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="!product">No Products found</div>

@@ -3,6 +3,7 @@ import { SearchComponent } from './search/search.component';
 import { CommonModule } from '@angular/common';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @Component({
   selector: 'app-container',
@@ -12,6 +13,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     CommonModule,
     ProductsListComponent,
     ProductDetailsComponent,
+    ProductDetailComponent,
   ],
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
