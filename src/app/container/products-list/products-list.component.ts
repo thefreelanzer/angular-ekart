@@ -655,4 +655,8 @@ export class ProductsListComponent {
 
     this.products = this.filteredProducts;
   }
+
+  clearSelectedProduct(): void {
+    this.selectedProduct = null;
+  }
 }

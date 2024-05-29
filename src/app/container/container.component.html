@@ -51,6 +51,7 @@
   ></products-list>
   <product-details
     *ngIf="productListComponent.selectedProduct"
+    [productListComp]="productListComponent"
   ></product-details>
   <!-- <div *ngFor="let item of nameArray">
     <p>Current item: {{ item }}</p>

@@ -1,17 +1,14 @@
 <div class="ekart--product--details--info scroll">
   <div class="ekart-product-detail-close">
-    <i class="fa fa-times" aria-hidden="true"></i>
+    <i class="fa fa-times" aria-hidden="true" (click)="close()"></i>
   </div>
   <div class="ekart-product-detail-image">
-    <img
-      src="https://images.vans.com/is/image/Vans/MV122M-HERO?$583x583$"
-      class="ekart-product-detail-image"
-    />
+    <img src="{{ product.imageURL }}" class="ekart-product-detail-image" />
   </div>
 
   <div class="ekart-product-detail">
     <div class="ekart-product-detail-name">
-      <h2>{{ product }}</h2>
+      <h2>{{ product.name }}</h2>
     </div>
     <div class="ekart-product-detail-gbc">
       <span>MEN</span>

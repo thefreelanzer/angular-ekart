@@ -34,11 +34,11 @@ export class SearchComponent {
 
   // fetch value using viewChild
 
-  @ViewChild('searchInput') searchInputValue: ElementRef;
-  updateSearchText() {
-    this.searchText = this.searchInputValue.nativeElement.value;
-    this.onSearchImput.emit(this.searchText);
-  }
+  // @ViewChild('searchInput') searchInputValue: ElementRef;
+  // updateSearchText() {
+  //   this.searchText = this.searchInputValue.nativeElement.value;
+  //   this.onSearchImput.emit(this.searchText);
+  // }
 
   change() {
     this.onSearchImput.emit(this.searchText);
