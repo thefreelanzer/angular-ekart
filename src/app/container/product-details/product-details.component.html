@@ -80,6 +80,7 @@
       class="btn-add-to-cart"
       *ngIf="product.is_in_inventory; else notifyMe"
       [routerLink]="'checkout'"
+      [state]="product"
     >
       ADD TO CART
     </button>

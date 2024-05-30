@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -598,4 +599,12 @@ export class ProductService {
       slug: 'michael-feburary-sk8-hi',
     },
   ];
+
+  fetchProducts() {
+    return new Observable((sub) => {
+      setTimeout(() => {
+        sub.next(this.products);
+      }, 2000);
+    });
+  }
 }

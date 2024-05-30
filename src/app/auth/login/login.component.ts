@@ -21,12 +21,22 @@ export class LoginComponent {
   ) {}
   username: string = '';
   password: string = '';
+  submitState: boolean = false;
   onSubmit() {
+    this.submitState = true;
     let user = this.authService.login(this.username, this.password);
     if (user === undefined) {
       alert('Invalid credentials');
     } else {
       this.router.navigateByUrl('products');
+    }
+  }
+
+  canExit() {
+    if ((this.username || this.password) && !this.submitState) {
+      return confirm('You have unsaved changes. Do you want to navigate away?');
+    } else {
+      return true;
     }
   }
 

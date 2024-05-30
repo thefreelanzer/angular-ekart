@@ -36,7 +36,9 @@ export class ProductsListComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
   ngOnInit() {
-    this.products = this.productService.products;
+    this.productService.fetchProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
     // this.queryParamText = this.activeRoute.snapshot.queryParams['search'];
 
     this.paramMapObj = this.activeRoute.queryParamMap.subscribe((data) => {
@@ -80,6 +82,7 @@ export class ProductsListComponent implements OnInit {
       this.filteredProducts = this.productCpy;
     }
     this.products = this.filteredProducts;
+    this.updateCount();
   }
   updateCount() {
     this.all = this.filteredProducts.length;
