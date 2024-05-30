@@ -7,6 +7,8 @@ import { ProductDetailComponent } from './container/product-detail/product-detai
 import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { canActive } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,7 +18,14 @@ export const routes: Routes = [
   //   { path: 'products/product/:id', component: ProductDetailComponent },
   {
     path: 'products',
-    children: [{ path: 'product/:id', component: ProductDetailComponent }],
+    children: [
+      { path: 'product/:id', component: ProductDetailComponent },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        canActivate: [canActive],
+      },
+    ],
   },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
