@@ -1,0 +1,14 @@
+<div class="search-container">
+  <input
+    type="text"
+    class="search-box"
+    placeholder="Search..."
+    [(ngModel)]="searchQuery"
+  />
+  <!-- <button
+    class="search-button"
+    [routerLink]="'/products'"
+    [queryParams]="{ search: searchQuery }"
+  > -->
+  <button class="search-button" (click)="onSearch(searchQuery)">Search</button>
+</div>

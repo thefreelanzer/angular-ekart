@@ -4,6 +4,9 @@
   [outOfStock]="outOfStock"
   (changeFIlter)="onChangeFilter($event)"
 ></app-filter>
+<a [routerLink]="'/products'" [queryParams]="{ search: 'pixel' }"
+  >Search for pixel</a
+>
 <div class="ekart--products--container">
   <div
     *ngFor="let item of products; let i = index"

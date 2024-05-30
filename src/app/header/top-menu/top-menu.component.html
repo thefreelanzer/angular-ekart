@@ -3,5 +3,14 @@
   <a href="#">Help</a>
   <a href="#">Exchange & Returns</a>
   <a href="#">Order Tracker</a>
-  <a href="#">SignUp / Login</a>
+  <a [routerLink]="'/home'" [fragment]="'services-section'">Services</a>
+  <a [routerLink]="'/login'" *ngIf="authService.isAuthenticated() === false"
+    >Login</a
+  >
+  <a
+    [routerLink]="'/login'"
+    [queryParams]="{ logout: true }"
+    *ngIf="authService.isAuthenticated() === true"
+    >Logout</a
+  >
 </div>

@@ -4,13 +4,22 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './container/product-detail/product-detail.component';
+import { SearchComponent } from './search/search.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './auth/login/login.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: ContainerComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'products', component: ContainerComponent },
+  //   { path: 'products/product/:id', component: ProductDetailComponent },
+  {
+    path: 'products',
+    children: [{ path: 'product/:id', component: ProductDetailComponent }],
+  },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'products/product/:id', component: ProductDetailComponent },
+  { path: 'search', component: SearchComponent },
   { path: '**', component: NotFoundComponent },
 ];

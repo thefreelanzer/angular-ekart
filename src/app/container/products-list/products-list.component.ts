@@ -1,24 +1,57 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product/product.component';
 import { FilterComponent } from './filter/filter.component';
 import { Product } from '../../Models/Product';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/products/product.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'products-list',
   standalone: true,
-  imports: [CommonModule, ProductComponent, FilterComponent],
+  imports: [
+    CommonModule,
+    ProductComponent,
+    FilterComponent,
+    RouterLink,
+    FormsModule,
+  ],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.css',
 })
-export class ProductsListComponent {
+export class ProductsListComponent implements OnInit {
   selectedProduct: Product;
   products: any[];
+  queryParamText: string;
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
+  paramMapObj;
 
   constructor(private productService: ProductService) {}
   ngOnInit() {
     this.products = this.productService.products;
+    // this.queryParamText = this.activeRoute.snapshot.queryParams['search'];
+
+    this.paramMapObj = this.activeRoute.queryParamMap.subscribe((data) => {
+      this.queryParamText = data.get('search');
+      this.searchText = this.queryParamText;
+
+      this.applyFilter();
+      this.updateCount();
+    });
+
+    // console.log('query string: ' + this.queryParamText);
+  }
+
+  ngOnDestroy() {
+    this.paramMapObj.unsubscribe();
   }
 
   productCpy = this.productService.products;
@@ -40,7 +73,7 @@ export class ProductsListComponent {
   applyFilter() {
     if (this.searchText) {
       const searchLower = this.searchText.toLowerCase();
-      this.filteredProducts = this.filteredProducts.filter((p) =>
+      this.filteredProducts = this.productCpy.filter((p) =>
         p.name.toLowerCase().includes(searchLower)
       );
     } else {
