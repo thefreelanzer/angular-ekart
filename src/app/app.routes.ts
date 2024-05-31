@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { canActivateChild, resolveProducts } from './auth.guard';
 import { UsersComponent } from './users/users.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -45,5 +46,6 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'register', component: RegistrationFormComponent },
   { path: '**', component: NotFoundComponent },
 ];
