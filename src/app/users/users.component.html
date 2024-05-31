@@ -1,0 +1,125 @@
+<div class="header">
+  <h1>User List</h1>
+  <label for="genderFilter">Total Users:{{ totalUsers | async }}</label>
+  <select
+    id="genderFilter"
+    (change)="filterGender($event)"
+    [(ngModel)]="filterText"
+  >
+    <option value="All">All</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+  <button class="btn btn-primary" (click)="showNewUserForm()">
+    Create New User
+  </button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>DOB</th>
+      <th>Mark</th>
+      <th>Percentage</th>
+      <th>Fee</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <!-- <tr *ngFor="let user of filteredUsers; userFilter: filterBy"> -->
+      <td>{{ user.id }}</td>
+
+      <!-- Name -->
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">
+        {{ user.name | uppercase }}
+      </td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <input [(ngModel)]="selectedUser.name" placeholder="Name" />
+      </td>
+
+      <!-- Email -->
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">
+        {{ user.email | lowercase }}
+      </td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <input [(ngModel)]="selectedUser.email" placeholder="Email" />
+      </td>
+
+      <!-- Gender -->
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">{{ user.gender }}</td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <select [(ngModel)]="selectedUser.gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </td>
+
+      <!-- DOB -->
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">
+        {{ user.dob | date : "fullDate" }}
+      </td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <input [(ngModel)]="selectedUser.dob" placeholder="DOB" type="date" />
+      </td>
+
+      <!-- Mark -->
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">{{ user.mark }}</td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <input
+          [(ngModel)]="selectedUser.mark"
+          placeholder="Mark"
+          type="number"
+        />
+      </td>
+
+      <!-- Percentage -->
+      <td>{{ user.mark | percentage : totalMark : 2 }}</td>
+
+      <!-- Fee -->
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">
+        {{ user.fee | currency : "INR" : "symbol" : "2.2-2" }}
+      </td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <input [(ngModel)]="selectedUser.fee" placeholder="Fee" type="number" />
+      </td>
+
+      <td *ngIf="!isEditing || user.id !== userIdToEdit">
+        <button class="btn btn-info" (click)="editUser(user)">Edit</button>
+        <button class="btn btn-danger" (click)="deleteUser(user.id)">
+          Delete
+        </button>
+      </td>
+      <td *ngIf="isEditing && user.id === userIdToEdit">
+        <button class="btn btn-info" (click)="updateUser()">Update</button>
+      </td>
+    </tr>
+
+    <tr *ngIf="isAddingNewUser">
+      <td></td>
+      <td><input [(ngModel)]="newUser.name" placeholder="Name" /></td>
+      <td><input [(ngModel)]="newUser.email" placeholder="Email" /></td>
+      <td>
+        <select [(ngModel)]="newUser.gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </td>
+      <td><input [(ngModel)]="newUser.dob" placeholder="DOB" type="date" /></td>
+      <td>
+        <input [(ngModel)]="newUser.mark" placeholder="Mark" type="number" />
+      </td>
+      <td>{{ newUser.mark | percentage : totalMark : 2 }}</td>
+      <td>
+        <input [(ngModel)]="newUser.fee" placeholder="Fee" type="number" />
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="saveNewUser()">Save</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

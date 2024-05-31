@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { canActivateChild, resolveProducts } from './auth.guard';
+import { UsersComponent } from './users/users.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -43,5 +44,6 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent, data: { name: 'Test' } },
   { path: 'contact', component: ContactComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'users', component: UsersComponent },
   { path: '**', component: NotFoundComponent },
 ];
