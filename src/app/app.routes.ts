@@ -11,6 +11,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { canActivateChild, resolveProducts } from './auth.guard';
 import { UsersComponent } from './users/users.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -47,5 +48,6 @@ export const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'users', component: UsersComponent },
   { path: 'register', component: RegistrationFormComponent },
+  { path: 'reactive-form', component: ReactiveFormComponent },
   { path: '**', component: NotFoundComponent },
 ];
