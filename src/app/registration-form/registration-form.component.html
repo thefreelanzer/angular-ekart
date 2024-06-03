@@ -9,7 +9,7 @@
             type="text"
             placeholder="First Name"
             name="first_name"
-            ngModel
+            [(ngModel)]="first_name"
             required
             #fname="ngModel"
           />
@@ -18,6 +18,7 @@
             <small *ngIf="fname.invalid && fname.touched">
               *First name is required field
             </small>
+            <span *ngIf="first_name">You entered: {{ first_name }}</span>
           </div>
         </div>
 
@@ -26,7 +27,7 @@
             type="text"
             placeholder="Last Name"
             name="last_name"
-            ngModel
+            [(ngModel)]="last_name"
             required
             #lname="ngModel"
           />
@@ -44,7 +45,7 @@
           type="text"
           placeholder="Email"
           name="email"
-          ngModel
+          [(ngModel)]="email"
           required
           email
         />
@@ -60,14 +61,38 @@
           />
         </div>
         <div class="input-box">
-          <input type="date" placeholder="Date of Birth" name="date" ngModel />
+          <input
+            type="date"
+            placeholder="Date of Birth"
+            name="dob"
+            [(ngModel)]="dob"
+            required
+            #tempdob="ngModel"
+          />
         </div>
       </div>
 
-      <!-- <div class="input-box">
-      <input type="text" placeholder="username" />
-      <button class="btn-gen-username">Create a Username</button>
-    </div> -->
+      <div class="input-box">
+        <input
+          type="text"
+          name="uname"
+          placeholder="username"
+          ngModel
+          required
+          #uname="ngModel"
+        />
+        <small *ngIf="uname.invalid && uname.touched"
+          >*Username is required</small
+        ><br />
+        <button
+          class="btn-gen-username"
+          type="button"
+          [disabled]="fname.invalid || lname.invalid || tempdob.invalid"
+          (click)="generateUsername()"
+        >
+          Create a Username
+        </button>
+      </div>
 
       <div class="gender-box">
         <h3>Gender</h3>
@@ -83,14 +108,6 @@
             />
             <label for="{{ gen.id }}">{{ gen.display }}</label>
           </div>
-          <!-- <div class="gender">
-            <input type="radio" id="check-female" name="gender" ngModel />
-            <label for="check-female">Female</label>
-          </div>
-          <div class="gender">
-            <input type="radio" id="check-other" name="gender" ngModel />
-            <label for="check-other">prefer not to say</label>
-          </div> -->
         </div>
       </div>
 
@@ -136,6 +153,12 @@
           />
         </div>
       </div>
+
+      <div class="column">
+        <input type="checkbox" name="agreement" [ngModel]="IsAgreed" />
+        <label for="agreement"> I agree to terms & conditions</label><br />
+      </div>
+
       <small *ngIf="address.invalid && address.touched">
         *Some of the address field does not contain valid value
       </small>
@@ -146,5 +169,31 @@
         [disabled]="!regform.valid"
       />
     </form>
+  </section>
+
+  <section class="user-detail-container" *ngIf="submitted">
+    <div class="user-details-container">
+      <div class="user-avatar">
+        <p>
+          {{ first_name?.slice(0, 1).toUpperCase()
+          }}{{ last_name?.slice(0, 1).toUpperCase() }}
+        </p>
+      </div>
+      <div class="user-details">
+        <div class="user-name">
+          <h2>{{ first_name }} {{ last_name }}</h2>
+        </div>
+        <p><b>Email:</b> {{ email }}</p>
+        <p><b>Username:</b> {{ username }}</p>
+        <p><b>Date of birth:</b> {{ dob }}</p>
+        <div class="user-name">
+          <h3>Address</h3>
+        </div>
+        <span>{{ country }}</span
+        >. <span>{{ city }}</span
+        >. <span>{{ region }}</span
+        >. <span>{{ postal }}</span>
+      </div>
+    </div>
   </section>
 </div>
