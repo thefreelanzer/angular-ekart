@@ -11,10 +11,16 @@
         />
         <small
           *ngIf="
-            reactiveForm.get('first_name').invalid &&
+            reactiveForm.get('first_name').errors?.['required'] &&
             reactiveForm.get('first_name').touched
           "
           >*First name is required</small
+        >
+        <small
+          *ngIf="
+            reactiveForm.get('first_name').errors?.['noSpaceAllow']
+          "
+          >*No Space is allowed for First Name.</small
         >
       </div>
       <div class="input-box">
@@ -146,6 +152,59 @@
     </button>
 
     <!--HTML for Experience Form Array -->
+    <div class="input-box experience" formArrayName="experience">
+      <div
+        class="experience"
+        *ngFor="
+          let exp of reactiveForm.get('experience')['controls'];
+          let k = index
+        "
+        [formGroupName]="k"
+      >
+        <div>
+          <label>Experience {{ k + 1 }}</label>
+          <input
+            type="text"
+            placeholder="Company Name"
+            formControlName="company"
+          />
+          <div class="column">
+            <div class="select-box">
+              <select formControlName="position">
+                <option hidden>Position</option>
+                <option>Junior Developer</option>
+                <option>Software Developer</option>
+                <option>Senior Developer</option>
+                <option>Team Lead</option>
+              </select>
+            </div>
+            <input
+              type="number"
+              placeholder="Experience"
+              formControlName="totalExp"
+            />
+          </div>
+          <div class="column">
+            <input
+              type="date"
+              placeholder="Start Date"
+              formControlName="start"
+            />
+            <input type="date" placeholder="End Date" formControlName="end" />
+          </div>
+          <button
+            type="button"
+            class="btn-add-delete"
+            (click)="deleteExperience(k)"
+          >
+            Delete Experience
+          </button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn-add-delete" (click)="addExperience()">
+      Add Experience
+    </button>
     <!-- <div class="input-box">
       <div class="experience">
         <label>Experience</label>
@@ -183,12 +242,8 @@
       />
     </div> -->
 
-    <input
-      type="submit"
-      value="Submit"
-      class="submit-btn"
-      [disabled]="!reactiveForm.valid"
-    />
+    <input type="submit" value="Submit" class="submit-btn" />
+    <!-- [disabled]="!reactiveForm.valid" -->
   </form>
 </section>
 

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CustomValidators } from '../Validators/noSpaceallow.validator';
 import {
   FormArray,
   FormControl,
@@ -20,10 +21,17 @@ export class ReactiveFormComponent {
 
   ngOnInit() {
     this.reactiveForm = new FormGroup({
-      first_name: new FormControl(null, Validators.required),
+      first_name: new FormControl(null, [
+        Validators.required,
+        CustomValidators.noSpaceAllow,
+      ]),
       last_name: new FormControl(null),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      username: new FormControl(null, Validators.required),
+      username: new FormControl(
+        null,
+        Validators.required,
+        CustomValidators.checkUserName
+      ),
       dob: new FormControl(null),
       gender: new FormControl(null),
       address: new FormGroup({
@@ -34,6 +42,15 @@ export class ReactiveFormComponent {
         postal: new FormControl(null, Validators.required),
       }),
       skills: new FormArray([new FormControl(null)]),
+      experience: new FormArray([
+        new FormGroup({
+          company: new FormControl(),
+          position: new FormControl(),
+          totalExp: new FormControl(),
+          start: new FormControl(),
+          end: new FormControl(),
+        }),
+      ]),
     });
   }
 
@@ -47,5 +64,22 @@ export class ReactiveFormComponent {
   deleteSkills(i: number) {
     const controls = <FormArray>this.reactiveForm.get('skills');
     controls.removeAt(i);
+  }
+
+  addExperience() {
+    const frmgroup = new FormGroup({
+      company: new FormControl(null),
+      position: new FormControl(null),
+      totalExp: new FormControl(null),
+      start: new FormControl(null),
+      end: new FormControl(null),
+    });
+
+    (<FormArray>this.reactiveForm.get('experience')).push(frmgroup);
+  }
+
+  deleteExperience(index: number) {
+    const frmArray = <FormArray>this.reactiveForm.get('experience');
+    frmArray.removeAt(index);
   }
 }
